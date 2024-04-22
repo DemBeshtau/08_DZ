@@ -151,7 +151,7 @@ total 0
 [root@nfsc upload]# 
 ```
 3.3. Перезагрузка клиента и сервера NFS;<br/>
-3.4. Проверка сервера:<br/>
+3.4. Проверка сервера NFS:<br/>
 ```shell
 [root@nfss ~]# ll /srv/share/upload      
 total 0
@@ -190,5 +190,26 @@ All mount points on 192.168.50.10:
 [root@nfsc upload]# showmount -a 192.168.50.10
 All mount points on 192.168.50.10:
 192.168.50.11:/srv/share
-
+[root@nfsc ~]# cd /mnt/upload/
+[root@nfsc upload]# mount | grep mnt
+systemd-1 on /mnt type autofs (rw,relatime,fd=22,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=11544)
+192.168.50.10:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=32768,wsize=32768,namlen=255,hard,proto=udp,timeo=11,retrans=3,sec=sys,mountaddr=192.168.50.10,mountvers=3,mountport=20048,mountproto=udp,local_lock=none,addr=192.168.50.10)
+[root@nfsc upload]# ll        
+total 0
+-rw-r--r--. 1 root      root      0 Apr 22 18:58 check_file
+```
+3.6. Создание очередного файла на клиенте NFS:<br/>
+```shell
+[root@nfsc upload]# touch final_check
+[root@nfsc upload]# ll
+total 0
+-rw-r--r--. 1 root      root      0 Apr 22 18:58 check_file
+-rw-r--r--. 1 nfsnobody nfsnobody 0 Apr 22 19:26 final_check
+```
+3.7. Проверка содержимого /srv/share/upload на сервере NFS:<br/>
+```shell
+[root@nfss ~]# ll /srv/share/upload/
+total 0
+-rw-r--r--. 1 root      root      0 Apr 22 18:58 check_file
+-rw-r--r--. 1 nfsnobody nfsnobody 0 Apr 22 19:26 final_check
 ```
