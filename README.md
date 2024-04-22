@@ -198,7 +198,7 @@ systemd-1 on /mnt type autofs (rw,relatime,fd=22,pgrp=1,timeout=0,minproto=5,max
 total 0
 -rw-r--r--. 1 root      root      0 Apr 22 18:58 check_file
 ```
-3.6. Создание очередного файла на клиенте NFS:<br/>
+3.6. Создание очередного файла в сетевой директории клиента NFS:<br/>
 ```shell
 [root@nfsc upload]# touch final_check
 [root@nfsc upload]# ll
